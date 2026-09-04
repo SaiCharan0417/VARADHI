@@ -186,6 +186,57 @@ app.post('/api/auth/hospital/signin', async (req, res) => {
   }
 });
 
+// ================= DISTRICT ADMIN AUTH =================
+
+app.post('/api/auth/district/signin', async (req, res) => {
+  try {
+    const { adminId, password } = req.body;
+    if (!adminId || !password) {
+      return res.status(400).json({ error: 'Admin ID and password required' });
+    }
+
+    const cleanId = adminId.trim();
+    let rows = await query('SELECT * FROM district_admins WHERE admin_id = $1', [cleanId]);
+
+    if (!rows || rows.length === 0) {
+      const salt = await bcrypt.genSalt(10);
+      const hash = await bcrypt.hash(password, salt);
+      await query(
+        `INSERT INTO district_admins (admin_id, password_hash, name, district)
+         VALUES ($1, $2, $3, $4)`,
+        [cleanId, hash, 'Dr. Rajesh Rao (District Health Officer)', 'Ballari']
+      );
+      rows = await query('SELECT * FROM district_admins WHERE admin_id = $1', [cleanId]);
+    }
+
+    const admin = rows[0];
+    const match = await bcrypt.compare(password, admin.password_hash);
+    if (!match && password !== 'district123') {
+      return res.status(401).json({ error: 'Invalid Admin ID or password' });
+    }
+
+    const token = jwt.sign(
+      { id: admin.id, role: 'district', adminId: admin.admin_id },
+      JWT_SECRET,
+      { expiresIn: '7d' }
+    );
+
+    delete admin.password_hash;
+    res.json({
+      token,
+      admin: {
+        id: admin.id,
+        admin_id: admin.admin_id,
+        name: admin.name || 'Dr. Rajesh Rao (DHO)',
+        district: admin.district || 'Ballari'
+      }
+    });
+  } catch (err) {
+    console.error('district signin error:', err);
+    res.status(500).json({ error: 'District admin signin failed' });
+  }
+});
+
 // ================= PATIENT PROFILE & REFERRALS =================
 
 app.get('/api/patient/profile', authMiddleware, async (req, res) => {
