@@ -3,9 +3,8 @@ services:
     name: medi-saarthi
     runtime: node
     plan: free
-    region: singapore
-    buildCommand: npm run build
-    startCommand: npm start
+    buildCommand: npm install --prefix backend
+    startCommand: node backend/server.js
     envVars:
       - key: NODE_VERSION
         value: 20.18.0
