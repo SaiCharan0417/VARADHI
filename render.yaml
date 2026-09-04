@@ -1,11 +1,14 @@
 services:
   - type: web
     name: medi-saarthi
-    env: node
+    runtime: node
     plan: free
-    buildCommand: npm run install:all && npm run build
+    region: singapore
+    buildCommand: npm run build
     startCommand: npm start
     envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
       - key: NODE_ENV
         value: production
       - key: JWT_SECRET
