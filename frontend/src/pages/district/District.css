@@ -1,0 +1,416 @@
+/* ===== District Admin Dashboard Styles ===== */
+
+.district-container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* Header */
+.d-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.d-title-group h1 {
+  font-size: 1.85rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, hsl(200, 95%, 60%), hsl(165, 72%, 52%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.d-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.d-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.d-badge {
+  background: hsla(200, 95%, 60%, 0.12);
+  border: 1px solid hsla(200, 95%, 60%, 0.3);
+  color: hsl(200, 95%, 65%);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-secondary {
+  padding: 0.5rem 0.9rem;
+  background: hsla(0, 0%, 100%, 0.06);
+  border: 1px solid var(--card-border);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-secondary:hover {
+  background: hsla(0, 0%, 100%, 0.12);
+  border-color: var(--text-secondary);
+}
+
+.btn-logout {
+  padding: 0.5rem 0.9rem;
+  background: hsla(0, 72%, 58%, 0.12);
+  border: 1px solid hsla(0, 72%, 58%, 0.3);
+  color: hsl(0, 72%, 68%);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background: hsla(0, 72%, 58%, 0.22);
+}
+
+/* Overview KPI Cards */
+.d-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+.d-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.3rem;
+  backdrop-filter: blur(14px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.d-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: hsla(0, 0%, 100%, 0.18);
+}
+
+.d-stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.d-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.d-stat-val {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-primary);
+  margin-bottom: 0.3rem;
+}
+
+.d-stat-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.d-stat-footer {
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid hsla(0, 0%, 100%, 0.06);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Completion Rate Card special styling */
+.completion-card {
+  border: 1px solid hsla(165, 72%, 52%, 0.3);
+  background: linear-gradient(135deg, hsla(220, 20%, 18%, 0.85), hsla(165, 72%, 52%, 0.08));
+}
+
+.rate-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: hsla(0, 0%, 100%, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.6rem;
+}
+
+.rate-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+/* Breakdown Pills */
+.breakdown-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+.breakdown-pill {
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Filter Bar & Controls */
+.d-controls {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.d-search-box {
+  flex: 1;
+  min-width: 260px;
+  position: relative;
+}
+
+.d-search-box input {
+  width: 100%;
+  padding: 0.65rem 1rem 0.65rem 2.4rem;
+  background: hsla(0, 0%, 0%, 0.25);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.d-search-box input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.d-search-icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.d-filter-group {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.d-select {
+  padding: 0.6rem 1rem;
+  background: hsla(0, 0%, 0%, 0.3);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.d-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Table Section */
+.d-table-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  backdrop-filter: blur(14px);
+  overflow: hidden;
+}
+
+.d-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.d-table-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.d-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid hsla(0, 0%, 100%, 0.05);
+}
+
+.d-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.d-table th {
+  background: hsla(0, 0%, 0%, 0.35);
+  padding: 0.85rem 1rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--card-border);
+  white-space: nowrap;
+}
+
+.d-table td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid hsla(0, 0%, 100%, 0.05);
+  vertical-align: middle;
+}
+
+.d-table tr:hover {
+  background: hsla(0, 0%, 100%, 0.03);
+}
+
+/* Status & Category Badges */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.status-completed {
+  background: hsla(145, 65%, 48%, 0.15);
+  color: hsl(145, 65%, 58%);
+  border: 1px solid hsla(145, 65%, 48%, 0.3);
+}
+
+.status-pending {
+  background: hsla(38, 92%, 55%, 0.15);
+  color: hsl(38, 92%, 65%);
+  border: 1px solid hsla(38, 92%, 55%, 0.3);
+}
+
+.status-triaged {
+  background: hsla(200, 90%, 55%, 0.15);
+  color: hsl(200, 90%, 65%);
+  border: 1px solid hsla(200, 90%, 55%, 0.3);
+}
+
+.status-slot_allotted {
+  background: hsla(165, 72%, 52%, 0.15);
+  color: hsl(165, 72%, 55%);
+  border: 1px solid hsla(165, 72%, 52%, 0.3);
+}
+
+.status-cancelled, .status-dropped_out {
+  background: hsla(0, 72%, 58%, 0.15);
+  color: hsl(0, 72%, 68%);
+  border: 1px solid hsla(0, 72%, 58%, 0.3);
+}
+
+.cat-emergency {
+  background: hsla(0, 72%, 58%, 0.15);
+  color: hsl(0, 72%, 68%);
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cat-referral {
+  background: hsla(210, 80%, 55%, 0.15);
+  color: hsl(210, 80%, 65%);
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.cat-teleconsult {
+  background: hsla(280, 70%, 60%, 0.15);
+  color: hsl(280, 70%, 75%);
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Action Select */
+.action-select {
+  padding: 0.35rem 0.6rem;
+  background: hsla(0, 0%, 0%, 0.4);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.action-select:hover {
+  border-color: var(--accent);
+}
